@@ -8,17 +8,17 @@ function buildCharts(sample) {
     var samples = data.sample;
 
     // Create a variable that filters the samples for the object with the desired sample number.
-    var sampleArray = samples.filter(sampleObj => sampleObj.id == sample);
+    var resultArray = samples.filter(sampleObj => sampleObj.id == sample);
 
     // 1. Create a variable that filters the metadata array for the object with the desired sample number.
-    var metaData = data.metadata
+    
     var metaArray = metadata.filter(sampleObj => sampleObj.id == sample);
 
     // Create a variable that holds the first sample in the array.
-    var answer = sampleArray[0];
+    var result = resultArray[0];
 
     // 2. Create a variable that holds the first sample in the metadata array.
-    var metaAnswer = metaArray[0]
+    var metaAnswer = metaArray[0];
 
     // Create variables that hold the otu_ids, otu_labels, and sample_values.
     var otu_ids = result.otu_ids
@@ -49,14 +49,14 @@ function buildCharts(sample) {
                         value: washFreq,
                         title: { text: "Belly Button Washing Frequency" },
                         type: "indicator",
-                        mode: "gauge+number"
+                        mode: "gauge+number",
                         gauge: {
                           axis: { range: [null, 10], tickwidth: 1, tickcolor: "black" },
                           steps: [
                             { range: [0, 2], color: "violet" },
                             { range: [2, 4], color: "indigo" },
                             { range: [4, 6], color: "blue" },
-                            { range: [6, 8], color: "green" }
+                            { range: [6, 8], color: "green" },
                             { range: [8, 10], color: "yellow" }
                         }
                   }
@@ -71,6 +71,6 @@ function buildCharts(sample) {
     };
 
     // 6. Use Plotly to plot the gauge data and layout.
-    Plotly.newPlot("gauge", data, layout);
+    Plotly.newPlot("gauge", gaugeData, gaugeLayout);
   });
 }
