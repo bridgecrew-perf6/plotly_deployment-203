@@ -81,20 +81,24 @@ function buildCharts(sample) {
     // Hint: Get the the top 10 otu_ids and map them in descending order  
     //  so the otu_ids with the most bacteria are last. -- syntax: yticks(ticks, [labels], **kwargs)
 
-    var yticks = otu_ids.slice(0,10).map(id => "OTU ${id}").reverse();
+    var yticks = otu_ids.slice(0,10).map(otuID => `OTU ${otuID}`).reverse();
+                
 
     // 8. Create the trace for the bar chart. 
     var barData = [
-      {x: sample_values.slice(0,10).reverse(),
-      y: yticks, 
-      text: otu_labels.slice(0,10).reverse(),
-      type: "bar"
-      
-      }];
+      {
+       y: yticks, 
+       x: sample_values.slice(0,10).reverse(),
+       text: otu_labels.slice(0,10).reverse(),
+       type: "bar",
+       orientation: "h",
+      }
+    ];
 
     // 9. Create the layout for the bar chart. 
     var barLayout = {
       title: "Top 10 Bacterial Species (OTUs)",
+      margin {t: 30, l: 150},
       xaxis: {title: "Sample Amount" },
       yaxis: {title: "OTU ID"}
     };
